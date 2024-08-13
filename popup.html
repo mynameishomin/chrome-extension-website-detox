@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="blocked-url-list" id="blockedUrlList">
+        </ul>
+        <div class="url-form">
+            <div class="flex w-full">
+                <label class="url-label">
+                    <span>https://</span>
+                    <input class="url-label__input" id="urlInput" type="text">
+                </label>
+                <button class="save-button" id="saveUrlButton">➕</button>
+            </div>
+            <span class="url-check-message" id="urlCheckMessage"></span>
+        </div>
+    </div>
+
+
+    <style>
+        .flex {
+            display: flex;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .wrapper {
+            width: 320px;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .blocked-url-list {
+            display: flex;
+            flex-direction: column;
+            max-height: 300px;
+            gap: 2px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: auto;
+        }
+
+        .blocked-url-list li {
+            display: flex;
+            align-items: center;
+            padding: 6px 8px;
+            border-radius: 8px;
+            transition: all .3s;
+            font-size: 14px;
+        }
+
+        .blocked-url-list li:hover {
+            background-color: #eee;
+        }
+
+        .blocked-url-list li img {
+            width: 24px;
+            margin-right: 8px;
+            border-radius: 8px;
+        }
+
+        .blocked-url-list li button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 24px;
+            height: 24px;
+            margin-left: auto;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .blocked-url-list li:hover button {
+            opacity: 1;
+        }
+
+        .blocked-url-list li button:hover {
+            background-color: #ccc;
+        }
+
+        .url-form {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .url-label {
+            display: flex;
+            width: 100%;
+        }
+
+        .url-label__input {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid black;
+
+        }
+
+        .save-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background: none;
+            border: 1px solid #000;
+            border-radius: 4px;
+        }
+
+        .url-check-message {
+            display: block;
+            width: 100%;
+            margin-top: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            color: red;
+
+        }
+
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        blockquote,
+        q {
+            quotes: none;
+        }
+
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+    </style>
+    <script src="/dist/popup.js"></script>
+</body>
+
+</html>
