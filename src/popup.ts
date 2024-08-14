@@ -32,6 +32,9 @@ const createUrlElement = ({ url, id }: BlockedUrl) => {
 
     span.textContent = url;
     img.src = `https://${url}/favicon.ico`;
+    img.addEventListener("error", () => {
+        img.src = "/src/images/default-favicon.ico";
+    });
     button.textContent = "❌";
 
     button.addEventListener("click", async () => {
@@ -53,18 +56,19 @@ const checkUrlPattern = (url: string) => {
 };
 
 (async () => {
-    const saveUrlButton = document.querySelector("#saveUrlButton");
+    const urlForm = document.querySelector("#urlForm");
     const urlInput =
         (document.querySelector("#urlInput") as HTMLInputElement) || null;
     const urlCheckMessage = document.querySelector("#urlCheckMessage");
 
-    if (!(saveUrlButton && urlInput && urlCheckMessage)) return false;
+    if (!(urlForm && urlInput && urlCheckMessage)) return false;
 
     urlInput.addEventListener("focus", () => {
         urlCheckMessage.textContent = "";
     });
 
-    saveUrlButton.addEventListener("click", async () => {
+    urlForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
         const url = urlInput.value;
         const isUrl = checkUrlPattern(url);
 
@@ -72,6 +76,8 @@ const checkUrlPattern = (url: string) => {
             const urlData = await addBlockedUrl(url);
             const urlElement = createUrlElement(urlData);
             blockedUrlList?.appendChild(urlElement);
+            urlInput.value = "";
+            urlCheckMessage.textContent = "";
         } else {
             urlCheckMessage.textContent = "올바른 url을 입력해주세요.";
         }

@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Reading time",
+    "name": "Website detox",
     "version": "1.0",
-    "description": "Add the reading time to Chrome Extension documentation articles",
+    "description": "",
     "action": {
         "default_popup": "popup.html"
     },

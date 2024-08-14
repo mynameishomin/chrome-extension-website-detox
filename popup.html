@@ -9,18 +9,21 @@
 
 <body>
     <div class="wrapper">
-        <ul class="blocked-url-list" id="blockedUrlList">
-        </ul>
-        <div class="url-form">
+        <h1 class="title">Website detox</h1>
+
+        <section>
+            <h2 class="blocked-url-title">Blocked urls</h2>
+            <ul class="blocked-url-list" id="blockedUrlList"></ul>
+        </section>
+
+        <form class="url-form" id="urlForm">
             <div class="flex w-full">
                 <label class="url-label">
-                    <span>https://</span>
-                    <input class="url-label__input" id="urlInput" type="text">
+                    <input class="url-label__input" id="urlInput" type="text" placeholder="URL to block">
                 </label>
-                <button class="save-button" id="saveUrlButton">➕</button>
             </div>
             <span class="url-check-message" id="urlCheckMessage"></span>
-        </div>
+        </form>
     </div>
 
 
@@ -37,6 +40,19 @@
             width: 320px;
             padding: 12px;
             box-sizing: border-box;
+        }
+
+        .title {
+            margin: 10px 20px 20px 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .blocked-url-title {
+            margin: 0 0 4px 4px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #888;
         }
 
         .blocked-url-list {
@@ -68,6 +84,12 @@
             width: 24px;
             margin-right: 8px;
             border-radius: 8px;
+        }
+
+        .blocked-url-list li span {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .blocked-url-list li button {
@@ -106,10 +128,22 @@
 
         .url-label__input {
             width: 100%;
+            padding: 8px;
             background: none;
-            border: none;
-            border-bottom: 1px solid black;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: all .3s;
+        }
 
+        .url-label__input:hover {
+            background-color: #eee;
+        }
+
+
+        .url-label__input:focus {
+            outline: none;
+            border-color: #999;
+            background-color: #fff;
         }
 
         .save-button {
