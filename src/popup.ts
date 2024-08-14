@@ -1,28 +1,11 @@
-import { getStorage, setStorage } from "./storage";
-
-export interface BlockedUrl {
-    url: string;
-    id: number;
-}
-
-export const getBlockedUrls = async () => {
-    return (await getStorage<BlockedUrl[]>("blockedUrls")) || [];
-};
-
-const addBlockedUrl = async (url: string) => {
-    const blockedUrls = await getBlockedUrls();
-    const urlData = { url, id: Date.now() };
-    blockedUrls.push(urlData);
-    await setStorage({ blockedUrls });
-    return urlData;
-};
-
-const deleteBlockedUrl = async (id: number) => {
-    const blockedUrls = await getBlockedUrls();
-    const urlIndex = blockedUrls.findIndex((obj) => obj.id === id);
-    blockedUrls.splice(urlIndex, urlIndex + 1);
-    setStorage({ blockedUrls });
-};
+import {
+    addBlockedUrl,
+    deleteBlockedUrl,
+    getBlockedUrls,
+    getOptions,
+    setEnable,
+} from "./storage";
+import { BlockedUrl } from "./type";
 
 const createUrlElement = ({ url, id }: BlockedUrl) => {
     const li = document.createElement("li");
@@ -56,12 +39,24 @@ const checkUrlPattern = (url: string) => {
 };
 
 (async () => {
+    const options = await getOptions();
     const urlForm = document.querySelector("#urlForm");
     const urlInput =
         (document.querySelector("#urlInput") as HTMLInputElement) || null;
     const urlCheckMessage = document.querySelector("#urlCheckMessage");
+    const enableCheckbox =
+        (document.querySelector("#enableCheckbox") as HTMLInputElement) || null;
 
-    if (!(urlForm && urlInput && urlCheckMessage)) return false;
+    if (!(urlForm && urlInput && urlCheckMessage && enableCheckbox)) {
+        return false;
+    }
+
+    enableCheckbox.checked = options.enable;
+    enableCheckbox.addEventListener("change", async () => {
+        await setEnable(enableCheckbox.checked);
+        const options = await getOptions();
+        console.log(options);
+    });
 
     urlInput.addEventListener("focus", () => {
         urlCheckMessage.textContent = "";

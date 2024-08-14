@@ -9,10 +9,23 @@
 
 <body>
     <div class="wrapper">
-        <h1 class="title">Website detox</h1>
+        <header class="header">
+            <h1 class="header__title">Website detox</h1>
 
-        <section>
-            <h2 class="blocked-url-title">Blocked urls</h2>
+        </header>
+
+
+        <section class="blocked-url">
+            <header class="blocked-url__header">
+                <label class="checkbox">
+                    <input id="enableCheckbox" type="checkbox">
+                    <span>
+                        <span></span>
+                    </span>
+                    Enable URL blocking
+                </label>
+            </header>
+
             <ul class="blocked-url-list" id="blockedUrlList"></ul>
         </section>
 
@@ -28,6 +41,51 @@
 
 
     <style>
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .checkbox>input {
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            opacity: 0;
+            position: absolute;
+        }
+
+        .checkbox>span {
+            display: flex;
+            width: 46px;
+            padding: 3px;
+            border-radius: 9999px;
+            overflow: hidden;
+            background-color: #eee;
+            box-sizing: border-box;
+            transition: all .3s;
+        }
+
+        .checkbox>span>span {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            transition: all .3s;
+        }
+
+        .checkbox>input:checked+span {
+            background-color: #006FEE;
+        }
+
+        .checkbox>input:checked+span>span {
+            margin-left: 20px;
+        }
+
         .flex {
             display: flex;
         }
@@ -42,14 +100,26 @@
             box-sizing: border-box;
         }
 
-        .title {
+        .header {
+            display: flex;
+            align-items: center;
             margin: 10px 20px 20px 10px;
+        }
+
+        .header__title {
+            margin-right: auto;
             font-size: 24px;
             font-weight: bold;
         }
 
-        .blocked-url-title {
+        .blocked-url__header {
+            display: flex;
+            align-items: end;
             margin: 0 0 4px 4px;
+        }
+
+        .blocked-url__title {
+            margin-right: auto;
             font-size: 12px;
             font-weight: bold;
             color: #888;
