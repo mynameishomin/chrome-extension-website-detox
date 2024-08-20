@@ -1,7 +1,10 @@
-import { getBlockedUrls } from "./storage";
+import { getBlockedUrls, getOptions } from "./storage";
 import { BlockedUrl } from "./type";
 
 (async () => {
+    const options = await getOptions();
+    if (!options.enable) return false;
+
     const blockedUrls = await getBlockedUrls();
     blockedUrls.forEach(async ({ url }: BlockedUrl) => {
         if (window.location.href.indexOf(url) !== -1) {
