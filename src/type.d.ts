@@ -4,5 +4,6 @@ export interface BlockedUrl {
 }
 
 export interface Options {
-    enable: boolean;
+    enable?: boolean;
+    tempUnblock?: boolean;
 }

@@ -51,7 +51,7 @@ const checkUrlPattern = (url: string) => {
         return false;
     }
 
-    enableCheckbox.checked = options.enable;
+    enableCheckbox.checked = options.enable || false;
     enableCheckbox.addEventListener("change", async () => {
         await setEnable(enableCheckbox.checked);
         const options = await getOptions();
