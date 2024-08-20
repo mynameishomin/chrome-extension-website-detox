@@ -49,7 +49,6 @@ export const getOptions = async () => {
 
 export const setOptions = async (newOptions: Options) => {
     const savedOptions = await getOptions();
-    console.log(savedOptions);
     const options = Object.assign(savedOptions, newOptions);
     setStorage({ options });
 };
