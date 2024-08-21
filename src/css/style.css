@@ -1,0 +1,19 @@
+@import url("/src/css/reset.css");
+@import url("/src/css/font.css");
+@import url("/src/css/ui.css");
+
+.wrapper {
+    width: 240px;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.enable-checkbox {
+    margin-bottom: 16px;
+}
+
+.header {
+    height: 80px;
+    background-color: #eee;
+}

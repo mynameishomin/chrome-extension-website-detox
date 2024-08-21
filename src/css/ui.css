@@ -1,0 +1,31 @@
+.ui-button {
+    display: flex;
+    width: 100%;
+    padding: 8px 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.ui-list {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    gap: 2px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.ui-list li {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.ui-list li:hover {
+    background-color: #eee;
+}

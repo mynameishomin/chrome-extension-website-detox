@@ -1,8 +1,11 @@
 {
     "manifest_version": 3,
-    "name": "Website detox",
+    "name": "웹사이트 디톡스",
     "version": "1.0",
     "description": "",
+    "icons": {
+        "64": "icon.png"
+    },
     "action": {
         "default_popup": "popup.html",
         "default_icon": "icon.png"
@@ -15,9 +18,9 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["blocked.html"],
+            "resources": ["blocked.html", "dashboard.html"],
             "matches": ["<all_urls>"]
         }
     ],
-    "permissions": ["storage", "activeTab", "tabs", "scripting"]
+    "permissions": ["storage"]
 }

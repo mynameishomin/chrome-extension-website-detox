@@ -5,35 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/src/css/reset.css">
+    <link rel="stylesheet" href="/src/css/style.css">
 </head>
 
 <body>
     <div class="wrapper">
-        <header class="header">
-            <h1 class="header__title">Website detox</h1>
+        <div class="enable-checkbox">
+            <label class="checkbox">
+                <input id="enableCheckbox" type="checkbox">
+                <span>
+                    <span></span>
+                </span>
+                URL 차단 활성화
+            </label>
+        </div>
 
-        </header>
+        <!-- <ul class="ui-list menu-list">
+            <li><button id="addUrlToBlock" class="ui-button" type="button">차단할 URL 추가</button></li>
+            <li><button id="dashboard" class="ui-button" type="button">대시보드</button></li>
+        </ul> -->
 
 
-        <section class="blocked-url">
-            <header class="blocked-url__header">
-                <label class="checkbox">
-                    <input id="enableCheckbox" type="checkbox">
-                    <span>
-                        <span></span>
-                    </span>
-                    Enable URL blocking
-                </label>
-            </header>
-
-            <ul class="blocked-url-list" id="blockedUrlList"></ul>
-        </section>
+        <ul class="blocked-url-list ui-list" id="blockedUrlList"></ul>
 
         <form class="url-form" id="urlForm">
             <div class="flex w-full">
                 <label class="url-label">
-                    <input class="url-label__input" id="urlInput" type="text" placeholder="URL to block">
+                    <input class="url-label__input" id="urlInput" type="text" placeholder="차단할 URL 추가">
                 </label>
             </div>
             <span class="url-check-message" id="urlCheckMessage"></span>

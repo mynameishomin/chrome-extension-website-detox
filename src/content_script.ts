@@ -16,8 +16,9 @@ import { BlockedUrl } from "./type";
 
             const tempUnblockButton =
                 document.querySelector("#tempUnblockButton");
-            if (!tempUnblockButton) return false;
-
+            const blockedUrl = document.querySelector("#blockedUrl");
+            if (!(tempUnblockButton && blockedUrl)) return false;
+            blockedUrl.textContent = url;
             tempUnblockButton.addEventListener("click", async () => {
                 await setTempUnblock(true);
                 window.location.reload();

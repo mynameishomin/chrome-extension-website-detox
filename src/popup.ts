@@ -46,37 +46,45 @@ const checkUrlPattern = (url: string) => {
     const urlCheckMessage = document.querySelector("#urlCheckMessage");
     const enableCheckbox =
         (document.querySelector("#enableCheckbox") as HTMLInputElement) || null;
+    const dashboard = document.querySelector("#dashboard");
 
-    if (!(urlForm && urlInput && urlCheckMessage && enableCheckbox)) {
-        return false;
+    if (dashboard) {
+        dashboard.addEventListener("click", () => {
+            const url = chrome.runtime.getURL("dashboard.html");
+            chrome.tabs.create({ url });
+        });
     }
 
-    enableCheckbox.checked = options.enable || false;
-    enableCheckbox.addEventListener("change", async () => {
-        await setEnable(enableCheckbox.checked);
-        const options = await getOptions();
-        console.log(options);
-    });
+    if (enableCheckbox) {
+        enableCheckbox.checked = options.enable || false;
+        enableCheckbox.addEventListener("change", async () => {
+            setEnable(enableCheckbox.checked);
+        });
+    }
 
-    urlInput.addEventListener("focus", () => {
-        urlCheckMessage.textContent = "";
-    });
-
-    urlForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const url = urlInput.value;
-        const isUrl = checkUrlPattern(url);
-
-        if (isUrl) {
-            const urlData = await addBlockedUrl(url);
-            const urlElement = createUrlElement(urlData);
-            blockedUrlList?.appendChild(urlElement);
-            urlInput.value = "";
+    if (urlInput && urlCheckMessage) {
+        urlInput.addEventListener("focus", () => {
             urlCheckMessage.textContent = "";
-        } else {
-            urlCheckMessage.textContent = "올바른 url을 입력해주세요.";
-        }
-    });
+        });
+    }
+
+    if (urlForm && urlCheckMessage) {
+        urlForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const url = urlInput.value;
+            const isUrl = checkUrlPattern(url);
+
+            if (isUrl) {
+                const urlData = await addBlockedUrl(url);
+                const urlElement = createUrlElement(urlData);
+                blockedUrlList?.appendChild(urlElement);
+                urlInput.value = "";
+                urlCheckMessage.textContent = "";
+            } else {
+                urlCheckMessage.textContent = "올바른 url을 입력해주세요.";
+            }
+        });
+    }
 
     const blockedUrlList = document.querySelector("#blockedUrlList");
 
