@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/popup.css">
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="enable-checkbox">
+        <!-- <div class="enable-checkbox">
             <label class="checkbox">
                 <input id="enableCheckbox" type="checkbox">
                 <span>
@@ -18,7 +18,7 @@
                 </span>
                 URL 차단 활성화
             </label>
-        </div>
+        </div> -->
 
         <!-- <ul class="ui-list menu-list">
             <li><button id="addUrlToBlock" class="ui-button" type="button">차단할 URL 추가</button></li>
@@ -26,216 +26,75 @@
         </ul> -->
 
 
-        <ul class="blocked-url-list ui-list" id="blockedUrlList"></ul>
+        <!-- <div class="enable-checkbox">
+            <label class="checkbox">
+                <input id="enableCheckbox" type="checkbox">
+                <span>
+                    <span></span>
+                </span>
+                URL 차단 활성화
+            </label>
+        </div> -->
 
-        <form class="url-form" id="urlForm">
-            <div class="flex w-full">
-                <label class="url-label">
-                    <input class="url-label__input" id="urlInput" type="text" placeholder="차단할 URL 추가">
-                </label>
+        <div class="card">
+            <div class="enable-animation on"></div>
+
+            <div class="relative">
+                <ul class="blocked-url-list ui-list" id="blockedUrlList"></ul>
+                <form class="url-form" id="urlForm">
+                    <div class="flex w-full">
+                        <label class="url-label">
+                            <input class="url-label__input" id="urlInput" type="text" placeholder="차단할 URL 추가">
+                        </label>
+                    </div>
+                    <span class="url-check-message" id="urlCheckMessage"></span>
+                </form>
+
+                <div class="controller">
+                    <label class="time-range-bar">
+                        <input id="blockedTime" type="range">
+                        <div class="time-range-bar__progress-bar" style="width: 0%;"></div>
+                    </label>
+
+                    <div class="progress-time">
+                        <span>0:00</span>
+                        <span>0:00</span>
+                    </div>
+
+                    <label class="enable-toggle" title="웹사이트 차단 활성화">
+                        <input type="checkbox" id="enableCheckbox">
+                        <span class="enable-toggle__icons">
+                            <span class="enable-toggle__icons__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path
+                                        d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+                                </svg>
+                            </span>
+                            <span class="enable-toggle__icons__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path
+                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM224 192l0 128c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128c0-17.7 14.3-32 32-32s32 14.3 32 32zm128 0l0 128c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
+                                </svg>
+                            </span>
+                        </span>
+                    </label>
+                </div>
             </div>
-            <span class="url-check-message" id="urlCheckMessage"></span>
-        </form>
+
+
+
+
+
+        </div>
+
+
+
+
+
     </div>
 
 
-    <style>
-        .checkbox {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-        }
 
-        .checkbox>input {
-            width: 0;
-            height: 0;
-            overflow: hidden;
-            opacity: 0;
-            position: absolute;
-        }
-
-        .checkbox>span {
-            display: flex;
-            width: 46px;
-            padding: 3px;
-            border-radius: 9999px;
-            overflow: hidden;
-            background-color: #eee;
-            box-sizing: border-box;
-            transition: all .3s;
-        }
-
-        .checkbox>span>span {
-            display: block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #fff;
-            transition: all .3s;
-        }
-
-        .checkbox>input:checked+span {
-            background-color: #006FEE;
-        }
-
-        .checkbox>input:checked+span>span {
-            margin-left: 20px;
-        }
-
-        .flex {
-            display: flex;
-        }
-
-        .w-full {
-            width: 100%;
-        }
-
-        .wrapper {
-            width: 320px;
-            padding: 12px;
-            box-sizing: border-box;
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            margin: 10px 20px 20px 10px;
-        }
-
-        .header__title {
-            margin-right: auto;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .blocked-url__header {
-            display: flex;
-            align-items: end;
-            margin: 0 0 4px 4px;
-        }
-
-        .blocked-url__title {
-            margin-right: auto;
-            font-size: 12px;
-            font-weight: bold;
-            color: #888;
-        }
-
-        .blocked-url-list {
-            display: flex;
-            flex-direction: column;
-            max-height: 300px;
-            gap: 2px;
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            overflow: auto;
-        }
-
-        .blocked-url-list li {
-            display: flex;
-            align-items: center;
-            padding: 6px 8px;
-            border-radius: 8px;
-            transition: all .3s;
-            font-size: 14px;
-        }
-
-        .blocked-url-list li:hover {
-            background-color: #eee;
-        }
-
-        .blocked-url-list li img {
-            width: 24px;
-            margin-right: 8px;
-            border-radius: 8px;
-        }
-
-        .blocked-url-list li span {
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-
-        .blocked-url-list li button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 24px;
-            height: 24px;
-            margin-left: auto;
-            background: none;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s;
-        }
-
-        .blocked-url-list li:hover button {
-            opacity: 1;
-        }
-
-        .blocked-url-list li button:hover {
-            background-color: #ccc;
-        }
-
-        .url-form {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .url-label {
-            display: flex;
-            width: 100%;
-        }
-
-        .url-label__input {
-            width: 100%;
-            padding: 8px;
-            background: none;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            transition: all .3s;
-        }
-
-        .url-label__input:hover {
-            background-color: #eee;
-        }
-
-
-        .url-label__input:focus {
-            outline: none;
-            border-color: #999;
-            background-color: #fff;
-        }
-
-        .save-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 20px;
-            height: 20px;
-            background: none;
-            border: 1px solid #000;
-            border-radius: 4px;
-        }
-
-        .url-check-message {
-            display: block;
-            width: 100%;
-            margin-top: 4px;
-            font-size: 10px;
-            font-weight: bold;
-            color: red;
-
-        }
-    </style>
     <script src="/dist/popup.js"></script>
 </body>
 

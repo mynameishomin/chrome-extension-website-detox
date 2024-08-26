@@ -1,3 +1,16 @@
+input[type="checkbox"],
+input[type="range"] {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.relative {
+    position: relative;
+}
+
 .ui-button {
     display: flex;
     width: 100%;
@@ -12,8 +25,6 @@
     flex-direction: column;
     max-height: 300px;
     gap: 2px;
-    padding: 10px;
-    border: 1px solid #eee;
     border-radius: 8px;
     overflow: auto;
 }

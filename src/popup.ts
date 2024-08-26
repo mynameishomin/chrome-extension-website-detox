@@ -78,6 +78,8 @@ const checkUrlPattern = (url: string) => {
                 const urlData = await addBlockedUrl(url);
                 const urlElement = createUrlElement(urlData);
                 blockedUrlList?.appendChild(urlElement);
+                blockedUrlList?.scrollTo(0, blockedUrlList.scrollHeight);
+
                 urlInput.value = "";
                 urlCheckMessage.textContent = "";
             } else {
