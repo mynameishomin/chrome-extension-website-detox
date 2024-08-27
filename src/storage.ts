@@ -54,9 +54,11 @@ export const setOptions = async (newOptions: Options) => {
 };
 
 export const setEnable = async (enable: boolean) => {
-    setOptions({ enable });
+    setOptions({
+        enable: { status: enable, startTime: enable ? Date.now() : null },
+    } as Options);
 };
 
 export const setTempUnblock = async (tempUnblock: boolean) => {
-    setOptions({ tempUnblock });
+    setOptions({ tempUnblock } as Options);
 };

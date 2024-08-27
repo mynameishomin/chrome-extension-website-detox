@@ -37,7 +37,7 @@
         </div> -->
 
         <div class="card">
-            <div class="enable-animation on"></div>
+            <div class="enable-animation" id="enableAnimation"></div>
 
             <div class="relative">
                 <ul class="blocked-url-list ui-list" id="blockedUrlList"></ul>
@@ -57,8 +57,8 @@
                     </label>
 
                     <div class="progress-time">
-                        <span>0:00</span>
-                        <span>0:00</span>
+                        <span id="leftTime">0:00</span>
+                        <span id="endTime">0:00</span>
                     </div>
 
                     <label class="enable-toggle" title="웹사이트 차단 활성화">
