@@ -1,37 +1,28 @@
-import { getBlockedUrls, getOptions, setTempUnblock } from "./storage";
+import {
+    getBlockedUrls,
+    getOptions,
+    setEnableStartedTime,
+    setEnableStatus,
+} from "./storage";
 import { BlockedUrl } from "./type";
 
 (async () => {
     const options = await getOptions();
-    if (!options.enable) return false;
 
-    if (options.tempUnblock) {
-        setTempUnblock(false);
+    const { startedTime, endTime, status } = options.enable;
+    if (!status) return false;
+
+    const lastTime = Date.now() - (startedTime as number);
+    if (endTime && endTime < lastTime) {
+        await setEnableStatus(false);
+        await setEnableStartedTime(null);
         return false;
     }
+
     const blockedUrls = await getBlockedUrls();
     blockedUrls.forEach(async ({ url }: BlockedUrl) => {
         if (window.location.href.indexOf(url) !== -1) {
-            await appendBlockedHtml();
-
-            const tempUnblockButton =
-                document.querySelector("#tempUnblockButton");
-            const blockedUrl = document.querySelector("#blockedUrl");
-            if (!(tempUnblockButton && blockedUrl)) return false;
-            blockedUrl.textContent = url;
-            tempUnblockButton.addEventListener("click", async () => {
-                await setTempUnblock(true);
-                window.location.reload();
-            });
+            window.location.href = chrome.runtime.getURL("popup.html");
         }
     });
 })();
-
-const appendBlockedHtml = async () => {
-    const response = await fetch(chrome.runtime.getURL("blocked.html"));
-    const html = new DOMParser().parseFromString(
-        await response.text(),
-        "text/html"
-    );
-    document.body.innerHTML = html.body.innerHTML;
-};

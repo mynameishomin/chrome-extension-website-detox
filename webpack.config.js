@@ -5,7 +5,6 @@ module.exports = {
     entry: {
         content_script: "./src/content_script.ts",
         popup: "./src/popup.ts",
-        dashboard: "./src/dashboard.ts",
     },
     output: {
         filename: "[name].js",

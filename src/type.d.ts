@@ -6,7 +6,7 @@ export interface BlockedUrl {
 export interface Options {
     enable: {
         status: boolean;
-        startTime: number | null;
+        startedTime: number | null;
+        endTime: number | null;
     };
-    tempUnblock: boolean;
 }
